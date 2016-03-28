@@ -26,7 +26,7 @@ def message_processing(str_command, sender):
     out = p.communicate()[0]
     # logging.warning(out)
 
-    send_request(Methods.sendMessage, {'chat_id': sender, 'text': '*YOUR COMMAND WAS:*\n*{}*`{}`'.format(str_command, out), 'parse_mode': 'Markdown'})
+    send_request(Methods.sendMessage, {'chat_id': sender, 'text': '*YOUR COMMAND WAS:*\n*{}*\n`{}`'.format(str_command, out), 'parse_mode': 'Markdown'})
 
 
 def send_request(method, data_to_send):
