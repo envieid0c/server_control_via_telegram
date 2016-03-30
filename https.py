@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import httplib
 import urllib
 import json
@@ -9,15 +12,12 @@ from enum import Enum
 
 logging.basicConfig(level=logging.DEBUG)
 
-
 class Methods(str, Enum):
     getMe = 'getMe'
     sendMessage = 'sendMessage'
     getUpdates = 'getUpdates'
 
-
 token = "token here"
-
 
 def message_processing(str_command, sender):
     command = str_command.split(' ')
@@ -27,7 +27,6 @@ def message_processing(str_command, sender):
     # logging.warning(out)
 
     send_request(Methods.sendMessage, {'chat_id': sender, 'text': '*YOUR COMMAND WAS:*\n*{}*\n`{}`'.format(str_command, out), 'parse_mode': 'Markdown'})
-
 
 def send_request(method, data_to_send):
     c = httplib.HTTPSConnection('api.telegram.org')
@@ -43,7 +42,6 @@ def send_request(method, data_to_send):
         raise
 
     return value
-
 
 offset = -1
 while True:
@@ -64,9 +62,3 @@ while True:
 
         else:
             send_request(Methods.sendMessage, {'chat_id': sender, 'text': 'Send only text messages!'})
-
-
-
-
-
-
